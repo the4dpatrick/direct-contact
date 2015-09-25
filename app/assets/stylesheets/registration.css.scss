@@ -1,0 +1,74 @@
+.registrations, .sessions {
+    h1,h2 { text-align: center; }
+}
+.registrations.new, .registrations.create {
+    h1 + p { text-align: center; font-weight: 300; }
+    #stripe_error {
+        color: white;
+        text-align: center;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        &.error {
+            background: $topbar-bg-color;
+            border: 1px solid $alert-color;
+        }
+    }
+    .card-provided {
+        @extend #stripe_error;
+    }
+}
+.white-box {
+    background: $topbar-bg-color;
+    padding: 2rem 0;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    border: 1px solid gray;
+}
+.row.padding { padding: 0 0.9375rem; }
+
+#plan-modal, #card-modal {
+    h2, p, label[for*="user_plan"] { color: black; text-align: center; }
+}
+
+#credit-card-form {
+    @include background(linear-gradient(to bottom, #1db1cf 0%,#1078ab 100%));
+    h2 { font-size: 1.4rem; text-align: left; margin-bottom: 1rem; color: white; }
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    max-width: 500px;
+    min-width: 300px;
+    margin: 30px auto;
+    @include box-shadow(0px 0px 4px rgba(0,0,0,0.8), inset 0px 1px 3px rgba(255,255,255,0.3), inset 0px 0px 2px rgba(255,255,255,0.2));
+
+    &.error { border: 3px solid $alert-color; }
+    #expiration, #cvv {
+        width: 62%;
+        display: inline-block;
+        vertical-align: top;
+    }
+    #expiration { margin-right: 5%; }
+    .error label, .error label.error { color: black;}
+    #cvv { width: 31%; text-align: right; }
+    #card_month, #card_year {
+        display: inline-block;
+        width: 48%;
+        margin: 0 1% 1rem 0;
+
+    }
+    #card_number, #card_month, #card_year, #card_code {
+        &.error { border: 2px solid $alert-color; }
+    }
+    input[type="text"], select {
+        @include background(linear-gradient(to bottom, #d3d3d3 0%,#d9d9d9 38%,#e5e5e5 82%,#e7e7e7 100%));
+        @include text-shadow(1px 1px 1px #fff);
+        border: 1px solid rgba(16,103,133,0.6);
+        border-radius: 3px;
+        color: #626262;
+        &:focus { outline: none; }
+    }
+    select {
+        @include background(linear-gradient(to bottom, #feffff 0%,#d2ebf9 100%));
+        border: 1px solid gray;
+    }
+}

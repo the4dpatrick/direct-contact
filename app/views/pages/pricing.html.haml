@@ -1,0 +1,25 @@
+- content_for(:title) do
+  Pricing - Plans
+
+.row
+  .small-12.columns
+    %h1
+      How much revenue does one prospect bring in?
+    %p.description
+      Subscribe to DirectContact and it'll pay for itself after just the first few emails
+.row.show-for-small-only
+  .small-12.columns
+    = render 'shared/pricing/professional'
+  .small-12.columns
+    = render 'shared/pricing/business'
+  .small-12.columns
+    = render 'shared/pricing/enterprise'
+.row.show-for-medium-up
+  .medium-4.columns
+    = render 'shared/pricing/professional'
+  .medium-4.columns
+    = render 'shared/pricing/business'
+  .medium-4.columns
+    = render 'shared/pricing/enterprise'
+
+- mixpanel_track('View Pricing', {ref: params[:ref]})

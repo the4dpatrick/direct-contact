@@ -1,0 +1,13 @@
+.row
+  .small-12.columns
+    %h1 Users
+    %table
+      %thead
+        %tr
+          %th ID
+          %th Email
+          %th Plan
+          %th Attempts
+          %th Found Emails
+      %tbody
+        = render @users

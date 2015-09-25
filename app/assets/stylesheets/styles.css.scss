@@ -1,0 +1,88 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    overflow-x: hidden;
+    background: url('https://s3-us-west-1.amazonaws.com/direct-contact/bg.jpg') top center no-repeat fixed #47403a;
+    @include background-size(cover);
+}
+#logo {
+    height: 32px;
+    position: absolute;
+    top: 50%;
+    margin-top: -16px;
+    @media #{$small-only} { height: 26px; }
+}
+body > .row:nth-child(2) {
+    margin-top: 1rem;
+    @media #{$small-only} { margin-top: 0; }
+}
+nav { @include box-shadow(0 0 25px rgba(0,0,0,0.2)); }
+form {
+    label {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+    input[type="text"],input[type="email"],input[type="password"] {
+        &:focus, & {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            text-transform: uppercase;
+        }
+    }
+}
+h1,h2,h3,h4,label,p,i { color: white; }
+i { font-size: 0.8rem; font-weight: 300;}
+h1 {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: bold;
+    @include text-shadow(0 0 13px rgba(0,0,0,0.75));
+    text-transform: uppercase;
+    text-align: center;
+    @media #{$small-only} { font-size: 2.7rem; }
+}
+#footer {
+    margin-top: 2rem;
+    a, p { text-transform: none; }
+    p { font-size: 0.8rem; }
+}
+.description {
+    color: white;
+    font-weight: 300;
+    text-align: center;
+    font-size: 1.2rem;
+}
+#error_explanation {
+    color: white;
+    border: 1px solid red;
+    padding: 5px;
+    background: rgba(255,255,255,0.15);
+    margin: 2rem 0;
+    h2 { font-size: 1.4rem; text-align: left; }
+    ul { font-weight: 300; }
+}
+.uppercase { text-transform: uppercase; }
+.center { text-align: center; }
+.underline { text-decoration: underline; }
+label small { color: #BABABA; }
+
+/* Shareable */
+#share {
+    & * {
+        display: inline-block;
+        vertical-align: top;
+        float: left;
+    }
+    .fb-like { margin-left: -10px; }
+    .fb-like, .IN-widget, .reddit_button { margin-right: 5px; }
+    .reddit_button {
+        background: white;
+        border-radius: 1px;
+        padding-right: 5px;
+        & > a { color: #369; }
+    }
+    script[type="text/javascript"], script{ display: none; }
+}

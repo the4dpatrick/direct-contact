@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: direct_contact_development
+  pool: 5
+  user: patrickperey
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: direct_contact_test
+  pool: 5
+  username: patrickperey
+  password:

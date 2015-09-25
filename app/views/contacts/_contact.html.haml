@@ -1,0 +1,10 @@
+.row
+  .small-12.medium-9.columns
+    %h2
+      = contact.full_name
+    %p.title
+      = title_at_company_for contact
+    %p.email
+      = contact.email
+  .small-12.medium-3.columns
+    = default_or_photo_for contact

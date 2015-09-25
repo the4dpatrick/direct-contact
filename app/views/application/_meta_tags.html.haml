@@ -1,0 +1,20 @@
+%meta{charset: 'utf-8'}
+%meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, minimal-ui'}
+%meta{property: 'og:type', content: 'website'}
+%meta{property: 'og:url', content: request.url}
+%meta{property: 'og:site_name', content: 'DirectContact - Sales Prospecting - Lead Generation Tool'}
+%meta{property: 'og:image', content: "https://s3-us-west-1.amazonaws.com/direct-contact/open-graph.jpg"}
+%meta{property: 'og:description', content: "DirectContact finds your leads's verified email address. Sales Lead Generation and Prospecting Tool."}
+
+%meta{name: 'twitter:site', content: '@DirectContactHQ'}
+%meta{name: 'twitter:card', content: 'summary'}
+%meta{property: 'twitter:description', content: "DirectContact finds your lead's verified email address. Sales Lead Generation and Prospecting Tool."}
+
+- if content_for?(:title)
+  %meta{property: 'og:title', content: "#{yield(:title)} | DirectContact"}
+  %title
+    = yield(:title) + ' | DirectContact'
+- else
+  %meta{property: 'og:title', content: 'DirectContact - Sales Prospecting - Lead Generation Tool'}
+  %title
+    Sales Prospecting - Lead Generation Tool | DirectContact

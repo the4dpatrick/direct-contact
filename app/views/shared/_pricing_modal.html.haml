@@ -1,0 +1,17 @@
+#pricing-modal.reveal-modal(data-reveal)
+  %h2
+    You've successfully found
+    = cookies[:emails_found_count]
+    verified emails
+  %p
+    Take a look at our pricing and plans
+  = link_to 'Pricing and Plans', pricing_path(ref: 'modal'), class: 'button expand', id: 'pricing-page-from-modal'
+  %a.close-reveal-modal
+    &#215;
+
+%script{ type: 'text/javascript' }
+  mixpanel.track_links('#pricing-page-from-modal', 'Pricing Modal to Pricing Page');
+- if cookies[:emails_found_count] == 5
+  - mixpanel_track('Five Successful Searches')
+- else
+  - mixpanel_track('Showed Pricing Modal', {"Successful searches" => "#{cookies[:emails_found_count]}"})

@@ -1,0 +1,39 @@
+mixpanel.track('Attempted Search', {
+  "First Name": $('#first_name').val(),
+  "Last Name": $('#last_name').val(),
+  "Domains": $('#domains').val()
+});
+$('#spinner').hide();
+$('#spinner').children().remove();
+$('#contact-info').children().remove();
+$("input[type=submit]").attr("disabled", false)
+
+<% if @contacts.present? %>
+  <% if user_signed_in? %>
+    $('#remaining').text('<%= j current_user.remaining_found_emails_count.to_s %>');
+  <% else %>
+    mixpanel.track('Contact Found');
+  <% end %>
+  $('#contact-info').append('<%= j render(@contacts) %>');
+<% else %>
+  <% if below_search_limit? %>
+    $('#contact-info').html('<%= j render('none_found') %>');
+  <% else %>
+    $('#contact-info').html('<%= j render('reached_limit') %>');
+  <% end %>
+<% end %>
+
+<% if !user_signed_in? %>
+  <% if open_pricing_modal? %>
+    $('#results').after('<%= j render('shared/pricing_modal') %>');
+    $(document).foundation();
+    $('#pricing-modal').foundation('reveal', 'open');
+  <% end %>
+
+  <% if first_successful_search? %>
+    mixpanel.track('First Successful Search');
+    setTimeout(function(){
+      $('#share-modal').foundation('reveal', 'open')
+    }, 2000);
+  <% end %>
+<% end %>

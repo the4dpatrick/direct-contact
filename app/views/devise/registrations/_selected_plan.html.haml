@@ -1,0 +1,8 @@
+.row
+  .small-12.medium-12.medium-centered.columns
+    - if @plan == 'professional'
+      = render 'shared/pricing/professional'
+    - elsif @plan == 'business'
+      = render 'shared/pricing/business'
+    - elsif @plan == 'enterprise'
+      = render 'shared/pricing/enterprise'

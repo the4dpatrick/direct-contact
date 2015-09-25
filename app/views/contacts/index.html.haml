@@ -1,0 +1,26 @@
+- content_for(:title) do
+  Sales Prospecting Tool - Prospect's Verified Email Address
+.row
+  .small-12.columns
+    %h1
+      Find your Lead
+    %p.description
+      Enter your lead's first name, last name, and company domain name.
+      %br
+      DirectContact will search through public information to find your lead's verified email address.
+
+= render 'form'
+
+#spinner
+
+.row#results
+  .small-12.small-centered.columns
+    #contact-info
+
+= render 'shared/share_modal'
+
+- if params[:first_signin]
+  %script{ type: 'text/javascript' }
+    mixpanel.track('Signup Success');
+
+- mixpanel_track('Landed on Homepage')

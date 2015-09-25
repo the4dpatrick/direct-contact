@@ -1,0 +1,20 @@
+.row
+  .small-12.columns
+    = form_tag root_path, method: :get, data: {abide: true}, id: 'search-form', remote: true do
+      .first_name
+        = label_tag :first_name, 'First Name'
+        = text_field_tag :first_name, params[:first_name], required: true, pattern: '^[a-zA-Z]+$'
+        %small.error
+          First Name is required
+      .last_name
+        = label_tag :last_name, 'Last Name'
+        = text_field_tag :last_name, params[:last_name], required: true, pattern: '^[a-zA-Z]+$'
+        %small.error
+          Last Name is required
+      .domains
+        = label_tag :domains, 'Company domain (.com)'
+        = text_field_tag :domains, params[:domains], required: true, pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9][^w]\.[a-zA-Z]{2,}(,?\s?\w+(\.\w+)+)*$'
+        %small.error
+          Domain name is required. e.g. GetDirectContact.com
+      .submit
+        = submit_tag 'Search', class: 'search-button', id: 'search-form-button'

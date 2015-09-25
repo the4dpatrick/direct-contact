@@ -1,0 +1,22 @@
+%ul.pricing-table
+  %li.title
+    Enterprise
+  %li.price
+    $14.99
+    %span.per-month / mo
+  -# %li.description
+  -#   $100 off each month for LIFE
+  -#   %br
+  -#   Promo Code:
+  -#   %strong
+  -#     LAUNCH
+  %li.bullet-item
+    4000 Verified Prospect Emails
+  %li.bullet-item
+    Phone and Email Support
+  - if controller_name == 'pages' && action_name == 'pricing'
+    %li.cta-button
+      - if user_signed_in?
+        = link_to 'Upgrade plan', edit_user_registration_path(plan: 'enterprise'), class: 'button', "data-no-turbolink" => true
+      - else
+        = link_to 'Sign up', new_user_registration_path(plan: 'enterprise'), class: 'button', "data-no-turbolink" => true

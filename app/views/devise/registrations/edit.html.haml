@@ -1,0 +1,76 @@
+.row
+  .small-12.columns
+    %h2
+      Edit #{resource_name.to_s.humanize}
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: {abide: true}) do |f|
+      = devise_error_messages!
+      %div
+        = f.label :email
+        = f.email_field :email, autofocus: true
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %div
+          Currently waiting confirmation for: #{resource.unconfirmed_email}
+      %div
+        = f.label :password
+        %i (leave blank if you don't want to change it)
+        = f.password_field :password, autocomplete: "off"
+      %div
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, autocomplete: "off"
+      %div
+        = f.label :current_password
+        %i (we need your current password to confirm your changes)
+        = f.password_field :current_password, autocomplete: "off", required: true
+        %small.error
+          we need your current password to confirm your changes
+      %div
+        = link_to '#', id: 'edit-form-submit', class: 'button radius expand split', onclick: "$('#edit_user').submit()" do
+          Update Account
+          %span{"data-dropdown" => 'drop'}
+        %ul#drop.f-dropdown(data-dropdown-content)
+          %li
+            = link_to 'Cancel Subscription', cancel_plan_path, method: :put, data: { confirm: 'Are you sure?' }
+.row.padding
+  .small-12.medium-5.columns.center.white-box
+    %h3 Subscription Plan
+    %p
+      - if @user.plan
+        = @user.plan.name.titleize
+      - else
+        None
+    = link_to 'Change Plan', '#', class: 'radius button', data: { "reveal-id" => 'plan-modal' }
+  .small-12.medium-5.columns.center.white-box
+    %h3 Card
+    %p
+      Using a card ending with:
+      %strong
+        = @user.last_4_digits
+    = link_to 'Change Card', '#', class: 'radius button', data: { "reveal-id" => 'card-modal' }
+
+#plan-modal.reveal-modal(data-reveal)
+  %h2 Change Subscription Plan
+  %p Choose from one of the plans below
+  .row
+    .small-12.columns
+      = form_for resource, as: resource_name, url: update_plan_path, html: { method: :put } do |f|
+        .row
+        - @plans.each do |plan|
+          .small-4.columns.center
+            = f.radio_button :plan, plan.name, checked: checked_plan?(@user, plan)
+            = f.label :plan, plan.name, value: plan.name
+            = render "shared/pricing/#{plan.name}"
+        = f.submit 'Change Plan', class: 'button expand radius'
+  %a.close-reveal-modal
+    &#215;
+
+#card-modal.reveal-modal(data-reveal)
+  .row
+    .small-12.columns
+      %h2 Change Card Information
+      %p Enter your new card information
+      = form_for resource, as: resource_name, url: update_card_path, html: { method: :put, id: 'edit_card_form' }, data: {abide: true} do |f|
+        = render 'shared/card_form'
+        = f.hidden_field :stripe_token
+        = f.submit 'Change Card', class: 'button expand radius'
+  %a.close-reveal-modal
+    &#215;

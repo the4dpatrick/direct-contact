@@ -1,0 +1,16 @@
+.row
+  .small-12.columns
+    %p.reached-limit
+      - if user_signed_in?
+        You have reached your monthly limit
+      - else
+        You have reached your searching limit
+    %p.description
+      Upgrade for more verified prospect email addresses
+    .center
+      - if user_signed_in?
+        = link_to 'Upgrade your plan', edit_user_registration_path, class: 'button center'
+      - else
+        = link_to 'Pricing and Plans', pricing_path, class: 'button center'
+
+- mixpanel_track('Reached Limit')

@@ -1,0 +1,11 @@
+%tr
+  %td
+    = user.id
+  %td
+    = user.email
+  %td
+    = user.plan.name.capitalize
+  %td
+    = "#{user.search_attempts_this_cycle} / #{user.total_search_attempts}"
+  %td
+    = "#{user.found_emails_count_this_cycle} / #{user.plan.monthly_limit}"

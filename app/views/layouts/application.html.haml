@@ -1,0 +1,19 @@
+!!!5
+%html.no-js{lang: 'en'}
+  %head
+    = render 'meta_tags'
+    = render 'google_analytics'
+    = render 'mixpanel'
+    - if stripe_page?
+      = javascript_include_tag 'https://js.stripe.com/v2', 'vendor/modernizr'
+      = tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY
+    - else
+      = javascript_include_tag 'vendor/modernizr'
+    = stylesheet_link_tag "application"
+    = csrf_meta_tags
+  %body{class: "#{controller_name} #{action_name}"}
+    = render 'nav'
+    = render 'flash'
+    = yield
+    = render 'footer'
+    = javascript_include_tag 'application'

@@ -1,0 +1,4 @@
+#share
+  - social_buttons.render do
+    - each_button do |button|
+      = eval button + '_tag'

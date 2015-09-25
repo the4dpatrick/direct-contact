@@ -1,0 +1,8 @@
+%h1 User
+%p
+  User:
+  = @user.name
+%p
+  Email:
+  - if @user.email
+    = @user.email

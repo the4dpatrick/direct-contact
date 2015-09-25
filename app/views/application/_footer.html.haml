@@ -1,0 +1,18 @@
+#footer
+  .row
+    .small-12.columns
+      .row
+        .medium-9.columns
+          %ul.inline-list.left
+            %li
+              = link_to 'Pricing', pricing_path(ref: 'footer')
+            %li
+              = link_to 'Feedback', 'mailto:feedback@getdirectcontact.com'
+            %li
+              = link_to 'Privacy & Terms', policies_path
+        .medium-3.columns.right
+          %p.right
+            © GetDirectContact.com
+  .row
+    .small-12.columns
+      = render_shareable

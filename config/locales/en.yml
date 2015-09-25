@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        stripe_token: "Credit Card info"
+        email: 'Email Address'
+        name: 'Full Name'
